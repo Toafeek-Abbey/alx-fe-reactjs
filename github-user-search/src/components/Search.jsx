@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import *as React from "react";
 import { fetchUserData } from "../services/githubService";
 
@@ -10,23 +10,19 @@ function Search() {
   const [error, setError] = useState(false);
   
     
-  const handleSearch =  () => {
-    setLoading(true);
-    setError(false);
-    setUserData(null);
-
-    try {
-      const data = fetchUserData(username);
-      setUserData(data);
-    } catch (err) {
-        console.error('GitHub API error:', err);
-      setError(true);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const handleSearch =  useEffect(() => {
+    fetch(fetchUserData)
+    .then(data => {
+        setUserData(data)
+        setLoading(true)
+        setUsername(data.username)
+    })
+  })
   const handleSubmit = (e) => {
     e.preventDefault();
+    if(!loading ) {
+        setError(true)
+    }
     
 }
   return (
