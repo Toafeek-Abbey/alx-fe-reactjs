@@ -7,26 +7,20 @@ function Search() {
     const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(false);
   const onSubmit = (data) => console.log(data)
-  const [error, setErrors] = useState(true);
-  React.useEffect(() => {
-          setErrors("recipe", {
-            type: "manual",
-            message: "Looks like we can't find the user",
-          })
-        }, [setErrors])
+  const [error, setError] = useState(false);
   
     
-  const handleSearch = async () => {
+  const handleSearch =  () => {
     setLoading(true);
-    setErrors(false);
+    setError(false);
     setUserData(null);
 
     try {
-      const data = await fetchUserData(username);
+      const data = fetchUserData(username);
       setUserData(data);
     } catch (err) {
         console.error('GitHub API error:', err);
-      setErrors(false);
+      setError(true);
     } finally {
       setLoading(false);
     }
@@ -36,6 +30,7 @@ function Search() {
     
 }
   return (
+    
     <form action="" onSubmit={handleSubmit(onSubmit)}>
         <div className="p-6 max-w-xl mx-auto">
       <div className="flex gap-2 mb-4">
@@ -52,12 +47,11 @@ function Search() {
         >
           Search
         </button>
+        {error && <p className="text-red-500">Looks like we can't find the user.</p>}
       </div>
 
-      {/* Conditional Rendering */}
       {loading && <p className="text-yellow-500">Looks like we can't find the user.</p>}
 
-      {error && <p className="text-red-500">Looks like we can't find the user.</p>}
 
       {userData && !loading && !error && (
         <div className="mt-6 p-4 border border-gray-200 rounded-lg shadow-md text-center">
