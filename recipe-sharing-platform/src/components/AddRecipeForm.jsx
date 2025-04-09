@@ -14,11 +14,17 @@ function AddRecipeFrom() {
         })
       }, [setErrors])
 
-    const {register, setErrors, formState: { errors }} = useForm()
+    const {register, setErrors,  formState: { errors }} = useForm()
     const onSubmit = (data) => console.log(data)
     const handleSubmit = (e) => {
         e.preventDefault();
         
+    }
+
+    const validate = () => {
+        if(recipe && ingredients && preparationsteps == "") {
+            alert("The input is require")
+        }
     }
 
     return ( 
@@ -28,7 +34,7 @@ function AddRecipeFrom() {
                 <input {...register("recipetitle", {required: true})}
                 value={recipe} onChange={(re) => setRecipe(re.target.value)}
                 aria-invalid={errors.recipe ? "true" : "false"}
-                type="text" name="recipetitle" id="recipetitle"
+                type="text" name="recipetitle" id="recipetitle" 
                 /> 
                 {errors.recipe && <span role="alert">This field is required</span>}
             </div>
@@ -44,7 +50,7 @@ function AddRecipeFrom() {
                 value={preparationsteps} onChange={(pe) => setPreparation(pe.target.value)}
                 name="preparationsteps" id="preparationsteps" ></textarea>
             </div>
-            <button type="submit">Add Recipe</button>
+            <button type="submit" onClick={validate}>Add Recipe</button>
         </form>
      );
 }
