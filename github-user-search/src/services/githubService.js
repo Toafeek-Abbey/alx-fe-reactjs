@@ -7,8 +7,8 @@ const fetchUserData = () => {
     let query = username ? `${username}` : '';
   
     // Add advanced filters
-    if (location) query += `+location:${location}`;
-    if (minRepos) query += `+repos:>${minRepos}`; // can adjust operator to >=, =, etc.
+    if (location)  {`+location:${location} + ${query}`};
+    if (minRepos) { `+repos:>${minRepos}`}; // can adjust operator to >=, =, etc.
     axios.get("https://api.github.com/search/users?q")
     .then(res => {
         return res.data
