@@ -7,12 +7,18 @@ function Search() {
     const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(false);
   const onSubmit = (data) => console.log(data)
-  const [error, setError] = useState(false);
+  const [error, setErrors] = useState(false);
+  React.useEffect(() => {
+          setErrors("recipe", {
+            type: "manual",
+            message: "Looks like we can't find the user",
+          })
+        }, [setErrors])
   
     
   const handleSearch = async () => {
     setLoading(true);
-    setError(false);
+    setErrors(false);
     setUserData(null);
 
     try {
@@ -20,7 +26,7 @@ function Search() {
       setUserData(data);
     } catch (err) {
         console.error('GitHub API error:', err);
-      setError(true);
+      setErrors(true);
     } finally {
       setLoading(false);
     }
