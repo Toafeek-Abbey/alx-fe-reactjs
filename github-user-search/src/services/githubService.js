@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const fetchUserData = () => {
-    axios.get("https://github.com/Toafeek-Abbey")
+    axios.get("https://api.github.com")
     .then(res => {
         return res.data
     }).catch(err => {
