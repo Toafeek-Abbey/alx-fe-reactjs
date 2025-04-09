@@ -6,6 +6,7 @@ function Search() {
     const [username, setUsername] = useState('');
     const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(false);
+  const onSubmit = (data) => console.log(data)
   const [error, setError] = useState(false);
   
     
@@ -24,9 +25,13 @@ function Search() {
       setLoading(false);
     }
   };
-
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    
+}
   return (
-    <div className="p-6 max-w-xl mx-auto">
+    <form action="" onSubmit={handleSubmit(onSubmit)}>
+        <div className="p-6 max-w-xl mx-auto">
       <div className="flex gap-2 mb-4">
         <input
           type="text"
@@ -67,6 +72,7 @@ function Search() {
         </div>
       )}
     </div>
+    </form>
   );
 }
 
