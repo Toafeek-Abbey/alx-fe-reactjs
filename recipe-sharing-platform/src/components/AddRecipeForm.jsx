@@ -2,12 +2,17 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 function AddRecipeFrom() {
-    const [recipe, setRecipe] = useState("")
+    const [recipe, setRecipe, setFormData] = useState("")
     const [ingredients, setIngreDient] = useState("")
     const [preparationsteps, setPreparation] = useState("")
 
     const {register, handleSubmit} = useForm()
     const onSubmit = (data) => console.log(data)
+    const handleChange = (e) => {
+        const {recipe, value} = e.target
+        setFormData(prevState => ({...prevState, [recipe]: value}))
+  
+    }
 
     return ( 
         <form action="post" onSubmit={handleSubmit(onSubmit)}>
@@ -15,6 +20,7 @@ function AddRecipeFrom() {
                 <label htmlFor="recipetitle">Recipe title</label>
                 <input {...register("recipetitle", {required: true})}
                 value={recipe} onChange={(re) => setRecipe(re.target.value)}
+                onChange= {handleChange}
                 type="text" name="recipetitle" id="recipetitle" /> 
             </div>
             <div>
