@@ -1,17 +1,24 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import *as React from "react";
 
 function AddRecipeFrom() {
-    const [recipe, setRecipe, setFormData] = useState("")
+    const [recipe, setRecipe] = useState("")
     const [ingredients, setIngreDient] = useState("")
     const [preparationsteps, setPreparation] = useState("")
 
-    const {register, handleSubmit} = useForm()
+    React.useEffect(() => {
+        setError("recipe", {
+          type: "manual",
+          message: "Dont Forget Your Recipe Should Be Cool!",
+        })
+      }, [setError])
+
+    const {register, setError, formState: { errors }} = useForm()
     const onSubmit = (data) => console.log(data)
-    const handleChange = (e) => {
-        const {recipe, value} = e.target
-        setFormData(prevState => ({...prevState, [recipe]: value}))
-  
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        
     }
 
     return ( 
@@ -20,8 +27,10 @@ function AddRecipeFrom() {
                 <label htmlFor="recipetitle">Recipe title</label>
                 <input {...register("recipetitle", {required: true})}
                 value={recipe} onChange={(re) => setRecipe(re.target.value)}
-                onChange= {handleChange}
-                type="text" name="recipetitle" id="recipetitle" /> 
+                aria-invalid={errors.recipe ? "true" : "false"}
+                type="text" name="recipetitle" id="recipetitle"
+                /> 
+                {errors.recipe && <span role="alert">This field is required</span>}
             </div>
             <div>
                 <label htmlFor="ingredients">Ingredients</label>
