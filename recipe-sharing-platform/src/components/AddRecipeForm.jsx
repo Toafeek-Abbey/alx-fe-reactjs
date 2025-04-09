@@ -8,13 +8,13 @@ function AddRecipeFrom() {
     const [preparationsteps, setPreparation] = useState("")
 
     React.useEffect(() => {
-        setError("recipe", {
+        setErrors("recipe", {
           type: "manual",
           message: "Dont Forget Your Recipe Should Be Cool!",
         })
-      }, [setError])
+      }, [setErrors])
 
-    const {register, setError, formState: { errors }} = useForm()
+    const {register, setErrors, formState: { errors }} = useForm()
     const onSubmit = (data) => console.log(data)
     const handleSubmit = (e) => {
         e.preventDefault();
