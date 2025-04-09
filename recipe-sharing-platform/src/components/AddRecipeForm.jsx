@@ -30,7 +30,7 @@ function AddRecipeFrom() {
     return ( 
         <form action="post" onSubmit={handleSubmit(onSubmit)}>
             <div className="rounded-lg shadow-lg md:p-6 sm:p-4 transition-transform duration-300 ease-in-out">
-                <label htmlFor="recipetitle" className="text-blue-800 my-4 hover:text-blue-500">Recipe title</label>
+                <label htmlFor="recipetitle" className="text-blue-800 my-4 hover:text-blue-500 font-bold">Recipe title</label>
                 <input {...register("recipetitle", {required: true})}
                 value={recipe} onChange={(re) => setRecipe(re.target.value)}
                 aria-invalid={errors.recipe ? "true" : "false"}
