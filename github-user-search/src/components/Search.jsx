@@ -7,7 +7,7 @@ function Search() {
     const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(false);
   const onSubmit = (data) => console.log(data)
-  const [error, setErrors] = useState(false);
+  const [error, setErrors] = useState(true);
   React.useEffect(() => {
           setErrors("recipe", {
             type: "manual",
@@ -26,7 +26,7 @@ function Search() {
       setUserData(data);
     } catch (err) {
         console.error('GitHub API error:', err);
-      setErrors(true);
+      setErrors(false);
     } finally {
       setLoading(false);
     }
@@ -55,7 +55,7 @@ function Search() {
       </div>
 
       {/* Conditional Rendering */}
-      {loading && <p className="text-yellow-500">Loading...</p>}
+      {loading && <p className="text-yellow-500">Looks like we can't find the user.</p>}
 
       {error && <p className="text-red-500">Looks like we can't find the user.</p>}
 
