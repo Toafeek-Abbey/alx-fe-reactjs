@@ -1,34 +1,26 @@
-import { useState } from "react"
+import { useState } from "react";
+
 function AddRecipeFrom() {
-    const [formData, setFormData] = useState({recipetitle: "", ingredients: "", preparationsteps: ""})
-  
-    const handleChange = (e) => {
-        const {recipetitle, value} = e.target
-        setFormData(prevState => ({...prevState, [recipetitle]: value}))
-  
-    }
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log(formData)
-    }
+    const [recipe, setRecipe] = useState("")
+    const [ingredients, setIngreDient] = useState("")
+    const [preparationsteps, setPreparation] = useState("")
 
     return ( 
-        <form action="post" onSubmit={handleSubmit} className="max-w-3xl mx-auto sm:p-4 p-6 bg-white shadow-lg rounded-2xl mt-10">
+        <form action="post" >
             <div>
-                <label htmlFor="recipetitle" className="text-xl font-semibold">Recipe title</label>
-                <input type="text" className="text-xl font-semibold" name="recipetitle" id="recipetitle" value={formData.recipetitle}
-                  onChange={handleChange}/> 
+                <label htmlFor="recipetitle">Recipe title</label>
+                <input value={recipe} onChange={(re) => setRecipe(re.target.value)}
+                type="text" name="recipetitle" id="recipetitle" required/> 
             </div>
             <div>
-                <label htmlFor="ingredients" className="text-xl font-semibold">Ingredients</label>
-                <textarea name="ingredients" className="text-xl font-semibold" id="ingredients"
-                value={formData.recipetitle}
-                  onChange={handleChange}></textarea>
+                <label htmlFor="ingredients">Ingredients</label>
+                <textarea value={ingredients} onChange={(Ie) => setIngreDient(Ie.target.value)}
+                name="ingredients" id="ingredients" required></textarea>
             </div>
             <div>
-                <label htmlFor="preparationsteps" className="text-xl font-semibold">Preparation Steps</label>
-                <textarea name="preparationsteps" className="text-xl font-semibold" id="preparationsteps" value={formData.recipetitle}
-                  onChange={handleChange}></textarea>
+                <label htmlFor="preparationsteps">Preparation Steps</label>
+                <textarea value={preparationsteps} onChange={(pe) => setPreparation(pe.target.value)}
+                name="preparationsteps" id="preparationsteps" required></textarea>
             </div>
             <button type="submit">Add Recipe</button>
         </form>
