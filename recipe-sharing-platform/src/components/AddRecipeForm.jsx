@@ -29,8 +29,8 @@ function AddRecipeFrom() {
 
     return ( 
         <form action="post" onSubmit={handleSubmit(onSubmit)}>
-            <div>
-                <label htmlFor="recipetitle">Recipe title</label>
+            <div className="rounded-lg shadow-lg md:p-6 sm:p-4 transition-transform duration-300 ease-in-out">
+                <label htmlFor="recipetitle" className="text-blue-800 my-4 hover:text-blue-500">Recipe title</label>
                 <input {...register("recipetitle", {required: true})}
                 value={recipe} onChange={(re) => setRecipe(re.target.value)}
                 aria-invalid={errors.recipe ? "true" : "false"}
@@ -38,14 +38,14 @@ function AddRecipeFrom() {
                 /> 
                 {errors.recipe && <span role="alert">This field is required</span>}
             </div>
-            <div>
-                <label htmlFor="ingredients">Ingredients</label>
+            <div className="rounded-lg shadow-lg md:p-6 sm:p-4 transition-transform duration-300 ease-in-out">
+                <label htmlFor="ingredients" className="text-blue-800 my-4 hover:text-blue-500">Ingredients</label>
                 <textarea {...register("ingredients", {required: true})}
                 value={ingredients} onChange={(Ie) => setIngreDient(Ie.target.value)}
                 name="ingredients" id="ingredients" ></textarea>
             </div>
-            <div>
-                <label htmlFor="preparationsteps">Preparation Steps</label>
+            <div className="rounded-lg shadow-lg md:p-6 sm:p-4 transition-transform duration-300 ease-in-out">
+                <label htmlFor="preparationsteps" className="text-blue-800 my-4 hover:text-blue-500">Preparation Steps</label>
                 <textarea {...register("preparationsteps", {required: true})}
                 value={preparationsteps} onChange={(pe) => setPreparation(pe.target.value)}
                 name="preparationsteps" id="preparationsteps" ></textarea>
