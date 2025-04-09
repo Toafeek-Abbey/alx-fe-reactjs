@@ -20,8 +20,8 @@ function Search() {
   })
   const handleSubmit = (e) => {
     e.preventDefault();
-    if(!loading ) {
-        setError(true)
+    if(error ) {
+        setError("Looks like we cant find the user")
     }
     
 }
